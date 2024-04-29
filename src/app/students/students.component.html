@@ -4,23 +4,26 @@
       <h1 class="text-center">Cadastro de Alunos</h1>
       <form [formGroup]="formGroupStudent">
         <div class="mb-3">
-          <label for="matricula" class="form-label">Matrícula</label>
+          <label for="nome" class="form-label">Nome</label>
           <input
             type="text"
             class="form-control"
-            id="matricula"
-            formControlName="id"
+            id="nome"
+            formControlName="name"
           />
         </div>
         <div class="mb-3">
-          <label for="nome" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" formControlName="name" />
-        </div>
-        <div class="mb-3">
           <label for="curso" class="form-label">Curso</label>
-          <input type="text" class="form-control" id="curso" formControlName="course" />
+          <input
+            type="text"
+            class="form-control"
+            id="curso"
+            formControlName="course"
+          />
         </div>
-        <button type="submit" class="btn btn-primary" (click)="save()">Salvar</button>
+        <button type="submit" class="btn btn-primary" (click)="save()">
+          Salvar
+        </button>
       </form>
       <h2 class="mt-5 text-center">Alunos cadastrados:</h2>
       <table class="table table-striped">
@@ -29,6 +32,7 @@
             <th scope="col">Matrícula</th>
             <th scope="col">Nome</th>
             <th scope="col">Curso</th>
+            <th class="d-flex justify-content-end" scope="col">Opções</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +40,10 @@
             <th scope="row">{{ student.id }}</th>
             <td>{{ student.name }}</td>
             <td>{{ student.course }}</td>
+            <td class="d-flex justify-content-end">
+              <button class="btn btn-danger me-2" (click)="delete(student)">Remover</button>
+              <button class="btn btn-primary" (click)="edit(student)">Alterar</button>
+            </td>
           </tr>
         </tbody>
       </table>
