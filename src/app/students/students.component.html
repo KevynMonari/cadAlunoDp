@@ -11,8 +11,18 @@
             id="nome"
             formControlName="name"
           />
-          <small *ngIf="submited && name.hasError('minLenght')" class="text-danger"> * O nome tem que ter no mínimo 3 caracteres!</small>
-          <small *ngIf="submited && name.hasError('required')" class="text-danger"> * O nome é requirido!</small>
+          <small
+            *ngIf="name.touched && name.hasError('minLenght')"
+            class="text-danger"
+          >
+            * O nome tem que ter no mínimo 3 caracteres!</small
+          >
+          <small
+            *ngIf="name.touched && name.hasError('required')"
+            class="text-danger"
+          >
+            * O nome é requirido!</small
+          >
         </div>
         <div class="mb-3">
           <label for="curso" class="form-label">Curso</label>
@@ -22,9 +32,19 @@
             id="curso"
             formControlName="course"
           />
-          <small *ngIf="submited && course.hasError('required')" class="text-danger"> * O curso é requirido!</small>
+          <small
+            *ngIf="course.touched && course.hasError('required')"
+            class="text-danger"
+          >
+            * O curso é requirido!</small
+          >
         </div>
-        <button type="submit" class="btn btn-primary" (click)="save()">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!formGroupStudent.valid"
+          (click)="save()"
+        >
           Salvar
         </button>
       </form>
@@ -44,8 +64,12 @@
             <td>{{ student.name }}</td>
             <td>{{ student.course }}</td>
             <td class="d-flex justify-content-end">
-              <button class="btn btn-danger me-2" (click)="delete(student)">Remover</button>
-              <button class="btn btn-primary" (click)="edit(student)">Alterar</button>
+              <button class="btn btn-danger me-2" (click)="delete(student)">
+                Remover
+              </button>
+              <button class="btn btn-primary" (click)="edit(student)">
+                Alterar
+              </button>
             </td>
           </tr>
         </tbody>
